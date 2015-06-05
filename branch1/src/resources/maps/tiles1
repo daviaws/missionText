@@ -1,0 +1,5 @@
+{"printable":"-","name":"HORIZONTAL_LIMIT","walkable":false,"color":"white"}
+{"printable":"|","name":"VERTICAL_LIMIT","walkable":false,"color":"white"}
+{"printable":" ","name":"GROUND","walkable":true,"color":"white"}
+{"printable":"~","name":"WATER","walkable":false,"color":"blue"}
+{"printable":",","name":"GRASS","walkable":true,"color":"green"}
