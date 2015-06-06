@@ -3,10 +3,11 @@
 
 from tkinter import Tk, Text, BOTH, DISABLED, NORMAL, END
 
+
 APPNAME = "WRITER TEST"
 WELCOME_MSG = "Welcome to {}\n".format(APPNAME)
 
-class Output(Text):
+class Text_Output(Text):
   
     def __init__(self, parent,inhandler):
         Text.__init__(self, parent)   
@@ -38,16 +39,17 @@ class UI():
     def __init__(self,inhandler,outhandler):
         self.executors = []
         self.outh = outhandler
-        outhandler.add_listener(self)
+        self.outh.add_listener(self)
         self.root = Tk()
-        self.app = Output(self.root,inhandler)
-        self.root.after(self.SYSTEM_REFRESH_RATE, self.execute())
+        self.app = Text_Output(self.root,inhandler)
+        self.root.after(2000, self.outh.update)
+        self.root.after(self.SYSTEM_REFRESH_RATE, self.execute)
         
         
     def update(self):
         self.app.config(state=NORMAL)
         self.app.delete(1.0, END)
-        self.app.insert('end', '{}'.format(self.outh.output))
+        self.app.insert('end', '{}'.format(self.outh.visual_output))
         self.app.config(state=DISABLED)
     
     def add_executor(self,exe):
@@ -56,7 +58,7 @@ class UI():
     def execute(self):
         for exe in self.executors:
             exe.update()
-        self.root.after(self.SYSTEM_REFRESH_RATE,lambda: self.execute())
+        self.root.after(self.SYSTEM_REFRESH_RATE, self.execute)
         
     def start(self):
         self.root.mainloop()
