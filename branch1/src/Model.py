@@ -20,9 +20,10 @@ class Terrain():
         return map
     
     
-    def __init__(self,x,y):
+    def __init__(self,x,y,audio_file):
         self.x = x
         self.y = y
+        self.audio_file = audio_file
         self.map = self.generate(x,y)
     
     def limits(self):

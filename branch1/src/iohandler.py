@@ -43,7 +43,8 @@ class Input_handler():
 class Output_handler():
         
         def __init__(self):
-            self.output = ''
+            self.visual_output = ''
+            self.sound_output = None
             self.listeners = []
             
         def add_char(self,char):
@@ -59,6 +60,7 @@ class Output_handler():
         
         def update(self):
             self.generate_grid()
+            self.sound_output = self.character.map.audio_file
             self.notify()
             
         def generate_grid(self):
@@ -75,4 +77,4 @@ class Output_handler():
                         if position:
                             output = output + position 
                 output = output + '\n'
-            self.output = output
+            self.visual_output = output

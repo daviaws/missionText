@@ -1,4 +1,4 @@
-import subprocess, os
+import subprocess, os, time
 
 class Audio_Output():
     
@@ -9,7 +9,15 @@ class Audio_Output():
         self.play_exec = None
         self.loop_file = None
         self.play_file = None
+        self.output_handler = None
 
+    def add_handler(self,output_handler):
+        self.output_handler = output_handler
+        self.output_handler.add_listener(self)
+    
+    def update(self):
+        self.loop(self.output_handler.sound_output)
+        
     def is_looping(self):
         return self.looping
         
