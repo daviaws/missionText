@@ -3,10 +3,11 @@
 
 from tkinter import Tk, Text, BOTH, DISABLED, NORMAL, END
 
+
 APPNAME = "WRITER TEST"
 WELCOME_MSG = "Welcome to {}\n".format(APPNAME)
 
-class Output(Text):
+class Text_Output(Text):
   
     def __init__(self, parent,inhandler):
         Text.__init__(self, parent)   
