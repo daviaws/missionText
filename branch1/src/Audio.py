@@ -1,4 +1,4 @@
-import subprocess, os, time
+import subprocess, os
 
 class Audio_Output():
     

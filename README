@@ -6,6 +6,7 @@ DEPENDÊNCIAS:
 1. Ter o interpretador Python 3.4.2+ instalado.
 2. Link 'python3' para o binario 'python3.4' do interpretador Python em:
 /usr/bin/
+3. ffmpeg #sudo apt-get install ffmpeg ### To play audio :3
 
 INSTALAÇÃO:
 Executar setup.py

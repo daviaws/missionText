@@ -42,8 +42,8 @@ class UI():
         self.outh.add_listener(self)
         self.root = Tk()
         self.app = Text_Output(self.root,inhandler)
-        self.root.after(1, self.outh.update())
-        self.root.after(self.SYSTEM_REFRESH_RATE, self.execute())
+        self.root.after(2000, self.outh.update)
+        self.root.after(self.SYSTEM_REFRESH_RATE, self.execute)
         
         
     def update(self):
@@ -58,7 +58,7 @@ class UI():
     def execute(self):
         for exe in self.executors:
             exe.update()
-        self.root.after(self.SYSTEM_REFRESH_RATE,lambda: self.execute())
+        self.root.after(self.SYSTEM_REFRESH_RATE, self.execute)
         
     def start(self):
         self.root.mainloop()
