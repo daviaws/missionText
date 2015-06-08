@@ -7,9 +7,9 @@ DEPENDÊNCIAS:
 2. Link 'python3' para o binario 'python3.4' do interpretador Python em:
 /usr/bin/
 3. ffmpeg: #To play audio :3
-#sudo add-apt-repository ppa:kirillshkrogalev/ffmpeg-next
-#sudo apt-get update
-#sudo apt-get install ffmpeg
+	#sudo add-apt-repository ppa:kirillshkrogalev/ffmpeg-next
+	#sudo apt-get update
+	#sudo apt-get install ffmpeg
 
 INSTALAÇÃO:
 Executar setup.py
