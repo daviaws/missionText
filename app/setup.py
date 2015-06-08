@@ -1,19 +1,27 @@
 #!/usr/bin/python3
 
-from os import getcwd, chmod, path, getenv, remove
+import os
 from sys import platform
 from shutil import copy2
 
 PLATFORM = platform
 
 if PLATFORM == 'linux' or PLATFORM == 'linux2':
-
-    WORKING_DIR = getcwd() + '/'
-    HOME = getenv("HOME") + '/'
+    
+    user = os.getenv("SUDO_USER")
+    if user is None:
+        print("This program need \'Superuser Privileges\'")
+        exit()
+        
+    NAME = 'MissionText'
+    FILE_NAME = NAME + '.desktop'
+    BIN = '/usr/bin/' + NAME
+    WORKING_DIR = os.getcwd() + '/'
+    HOME = os.getenv("HOME") + '/'
     LOCAL_SHARE_APLICATION = HOME + '.local/share/applications/'
-    if path.isdir(HOME + 'Área de Trabalho/'): 
+    if os.path.isdir(HOME + 'Área de Trabalho/'): 
         DESKTOP = HOME + 'Área de Trabalho/'
-    elif path.isdir(HOME + 'Desktop'):
+    elif os.path.isdir(HOME + 'Desktop'):
         DESKTOP = HOME + 'Desktop'
     else:
         DESKTOP = None
@@ -25,8 +33,6 @@ if PLATFORM == 'linux' or PLATFORM == 'linux2':
     EXEC_PATH = WORKING_DIR + SOURCE + EXEC
     ICON = WORKING_DIR + RESOURCES + 'icon.png'
     BGM = WORKING_DIR + RESOURCES + 'sounds/BGM/'
-    NAME = 'MissionText'
-    FILE_NAME = NAME + '.desktop'
     FILE_PATH = WORKING_DIR + FILE_NAME
     COMMENT = 'A Great Journey Begins'
     TYPE = 'Application'
@@ -36,7 +42,7 @@ if PLATFORM == 'linux' or PLATFORM == 'linux2':
     
     PERMISSION = 0o755
     
-    if not (path.isfile(FILE_PATH) or path.isfile(LOCAL_SHARE_APLICATION + FILE_NAME) or path.isfile(DESKTOP + FILE_NAME)): 
+    if not (os.path.isfile(FILE_PATH) or os.path.isfile(LOCAL_SHARE_APLICATION + FILE_NAME) or os.path.isfile(DESKTOP + FILE_NAME) or os.path.isfile(BIN)): 
         file = open(SH, 'w')
         file.write('cd '+ WORKING_DIR + SOURCE + '\n')
         file.write('./' + EXEC)
@@ -56,19 +62,23 @@ if PLATFORM == 'linux' or PLATFORM == 'linux2':
         file.close()
 	
 
-        chmod(SH,PERMISSION)
-        chmod(FILE_PATH, PERMISSION)
+        os.chmod(SH,PERMISSION)
+        os.chmod(FILE_PATH, PERMISSION)
+
+        os.symlink(SH, BIN)
     
-        if path.isfile(FILE_PATH):
+        if os.path.isfile(FILE_PATH):
             copy2(FILE_PATH, LOCAL_SHARE_APLICATION)
         if DESKTOP:
             copy2(FILE_PATH, DESKTOP)
     else:
-        if path.isfile(FILE_PATH):
-            remove(FILE_PATH)
-        if path.isfile(LOCAL_SHARE_APLICATION + FILE_NAME):
-            remove(LOCAL_SHARE_APLICATION + FILE_NAME)
-        if path.isfile(DESKTOP + FILE_NAME):
-            remove(DESKTOP + FILE_NAME)
-        if path.isfile(SH):
-            remove(SH)
+        if os.path.isfile(FILE_PATH):
+            os.remove(FILE_PATH)
+        if os.path.isfile(LOCAL_SHARE_APLICATION + FILE_NAME):
+            os.remove(LOCAL_SHARE_APLICATION + FILE_NAME)
+        if os.path.isfile(DESKTOP + FILE_NAME):
+            os.remove(DESKTOP + FILE_NAME)
+        if os.path.isfile(SH):
+            os.remove(SH)
+        if os.path.isfile(BIN):
+            os.remove(BIN)
