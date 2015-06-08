@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 
 import os
-from sys import platform
+import sys
 from shutil import copy2
 
-PLATFORM = platform
+PLATFORM = sys.platform
 
 if PLATFORM == 'linux' or PLATFORM == 'linux2':
     
@@ -17,6 +17,14 @@ if PLATFORM == 'linux' or PLATFORM == 'linux2':
     FILE_NAME = NAME + '.desktop'
     BIN = '/usr/bin/' + NAME
     WORKING_DIR = os.getcwd() + '/'
+    delimiter = '/'
+    arguments = str(sys.argv[0]).split(delimiter)
+    if len(arguments) > 1:
+        target = arguments.pop(-1)
+        if arguments[0] == '.':
+            del arguments[0]
+        relative_path = delimiter.join(arguments)
+        WORKING_DIR = WORKING_DIR + relative_path + '/'
     HOME = os.getenv("HOME") + '/'
     LOCAL_SHARE_APLICATION = HOME + '.local/share/applications/'
     if os.path.isdir(HOME + 'Área de Trabalho/'): 
@@ -72,6 +80,8 @@ if PLATFORM == 'linux' or PLATFORM == 'linux2':
         if DESKTOP:
             copy2(FILE_PATH, DESKTOP)
     else:
+        if os.path.isfile(BIN):
+            os.remove(BIN)
         if os.path.isfile(FILE_PATH):
             os.remove(FILE_PATH)
         if os.path.isfile(LOCAL_SHARE_APLICATION + FILE_NAME):
@@ -80,5 +90,3 @@ if PLATFORM == 'linux' or PLATFORM == 'linux2':
             os.remove(DESKTOP + FILE_NAME)
         if os.path.isfile(SH):
             os.remove(SH)
-        if os.path.isfile(BIN):
-            os.remove(BIN)

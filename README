@@ -1,6 +1,7 @@
 Atenção:
 Garantido apenas em Linux por enquanto, embora seja possível executar no Windows pelo interpretador, não foi testado.
 
+
 DEPENDÊNCIAS:
 
 1. Ter o interpretador Python 3.4.2+ instalado.
@@ -11,8 +12,17 @@ DEPENDÊNCIAS:
 	$sudo apt-get update
 	$sudo apt-get install ffmpeg
 
+
 INSTALAÇÃO:
-Executar no terminal $sudo python3 setup.py
+Executar no terminal:
+	$sudo python3 setup.py ou
+	$sudo ./python3
+
+Observações: 
+É necessário privilégio de Superusuário para efetuar a instalação.
+Não é necessário estar dentro do diretório de instalação para efetuá-la :)
+Ex: sudo ./app/python3
+
 
 EXECUÇÃO:
 No terminal:
@@ -20,7 +30,10 @@ No terminal:
 Acessar ícones em:
 	Jogos
 	Área de Trabalho
-	Diretório de instalação
+	Diretório de Instalação
+
 
 DESINSTALAÇÃO:
-Executar novamente no terminal $sudo python3 setup.py
+Executar novamente no terminal:
+	$sudo python3 setup.py ou
+	#sudo ./python3
