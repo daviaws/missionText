@@ -21,7 +21,8 @@ Executar no terminal:
 Observações: 
 É necessário privilégio de Superusuário para efetuar a instalação.
 Não é necessário estar dentro do diretório de instalação para efetuá-la :)
-Ex: sudo ./app/python3
+Ex:
+	$sudo ./app/setup.py
 
 
 EXECUÇÃO:
@@ -36,4 +37,4 @@ Acessar ícones em:
 DESINSTALAÇÃO:
 Executar novamente no terminal:
 	$sudo python3 setup.py ou
-	#sudo ./python3
+	$sudo ./python3
