@@ -4,7 +4,7 @@ Garantido apenas em Linux por enquanto, embora seja possível executar no Window
 
 DEPENDÊNCIAS:
 
-1. Ter o interpretador Python 3.4.2+ instalado.
+1. Ter o interpretador Python 3.4 instalado.
 2. Link 'python3' para o binario 'python3.4' do interpretador Python em:
 /usr/bin/
 3. ffmpeg: #To play audio :3
