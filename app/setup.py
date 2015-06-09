@@ -20,7 +20,7 @@ if PLATFORM == 'linux' or PLATFORM == 'linux2':
     delimiter = '/'
     arguments = str(sys.argv[0]).split(delimiter)
     if len(arguments) > 1:
-        target = arguments.pop(-1)
+        del arguments[-1]
         if arguments[0] == '.':
             del arguments[0]
         relative_path = delimiter.join(arguments)
@@ -50,7 +50,7 @@ if PLATFORM == 'linux' or PLATFORM == 'linux2':
     
     PERMISSION = 0o755
     
-    if not (os.path.isfile(FILE_PATH) or os.path.isfile(LOCAL_SHARE_APLICATION + FILE_NAME) or os.path.isfile(DESKTOP + FILE_NAME) or os.path.isfile(BIN)): 
+    if not (os.path.isfile(SH)): 
         file = open(SH, 'w')
         file.write('cd '+ WORKING_DIR + SOURCE + '\n')
         file.write('./' + EXEC)
